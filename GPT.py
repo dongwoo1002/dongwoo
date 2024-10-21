@@ -27,6 +27,7 @@ if 'stop' not in st.session_state:
 def chat(text):
     messages = [{"role": "system", "content": system_instruction1}]
     messages.extend(st.session_state['messages'])
+
     user_turn = {"role": "user", "content": text}
     messages.append(user_turn)
     st.session_state['messages'].append(user_turn)
@@ -56,7 +57,7 @@ if not st.session_state['stop']:
 
     with row2:
         with st.form('form', clear_on_submit=True):
-            input_text = st.text_input('You')
+            input_text = st.text_input('You', placeholder='질문을 입력하세요...')
             submitted = st.form_submit_button('Send')
             if submitted and input_text:
                 chat(input_text)
